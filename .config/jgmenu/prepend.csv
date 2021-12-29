@@ -1,0 +1,86 @@
+### Applications-only menu  "apps.csv"
+### by @damo
+
+@rect,,964,10,320,36,2,left,top,#282a36 0,#282a36 100,
+@search,,969,10,260,36,2,left,top,#eeeeee 100,#000000 100,
+@icon,,1250,16,22,22,2,left,top,#000000 50,#000000 50,/home/john/.config/jgmenu/edit-find.svg
+
+@rect,^term(reboot),980,65,85,80,2,left,top,#ffffff 0,#ffffff 0,
+@icon,,1001,70,40,40,2,left,top,#ffffff 100,#ffffff 100,/home/john/.config/jgmenu/system-reboot.svg
+@text,,1000,120,80,20,1,left,top,#ffffff 100,#ffffff 100,Reboot
+
+
+@rect,^term(qtile cmd-obj -o cmd -f shutdown),1080,65,85,80,2,left,top,#ffffff 0,#ffffff 0,
+@icon,,1102,70,40,40,2,left,top,#ffffff 100,#ffffff 100,/home/john/.config/jgmenu/system-log-out.svg
+@text,,1094,120,80,20,2,left,top,#ffffff 100,#ffffff 100,Log Out
+
+#@rect,^term(rpkexec env DISPLAY=$DISPLAY XAUTHORITY HOME=$HOME systemctl poweroff),1180,65,85,80,2,left,top,#ffffff 0,#ffffff 0,
+@rect,^term(poweroff),1180,65,85,80,2,left,top,#ffffff 0,#ffffff 0,
+@icon,,1201,70,40,40,2,left,top,#ffffff 100,#ffffff 100,/home/john/.config/jgmenu/system-shutdown.svg
+@text,,1186,120,80,20,2,left,top,#ffffff 100,#ffffff 100,power-off
+
+@rect,,964,150,320,420,1,left,top,#282a36 100,#282a36 100,
+@icon,^term(),1020,220,200,200,2,left,top,#ffffff 100,#ffffff 100,/usr/share/icons/Tela-pink-dark/32/status/weather-showers-day.svg
+@text,^term(),1070,440,100,20,2,left,top,#ffffff 100,#ffffff 100,Fecha y Hora
+
+
+@icon,,20,10,70,70,9,left,top,#000000 100,#b51010 100,/home/john/.config/jgmenu/garuda-purple.png
+@text,,110,30,150,32,32,left,top,#e6e6e6 100,#b51010 100,HOLA John
+
+
+# Categories box
+@rect,^filter(*),4,100,150,30,2,left,top,#000000 0,#19c8f0 90,
+@text,,20,100,150,30,2,left,top,#e6e6e6 100,#000000 0,Apps
+
+
+@rect,^filter(#Accessories #Util #Archiving #Compression #TextEditor ),4,130,150,30,2,left,top,#000000 0,#000000 0,
+@icon,,10,130,142,32,2,left,top,#000000 50,#000000 50,/usr/share/icons/Paper/512x512/categories/applications-accessories.png
+@text,,20,130,150,30,2,left,top,#e6e6e6 100,#b51010 90,Accessories
+
+
+@rect,^filter(#Development #Build #Debug #IDE #Profiling #RevisionControl ),4,160,150,30,2,left,top,#000000 0,#000000 0,
+@icon,,10,160,32,32,2,left,top,#000000 50,#000000 50,/usr/share/icons/Paper/512x512/categories/applications-development.png
+@text,,20,160,150,30,2,left,top,#e6e6e6 100,#000000 0,Development
+
+
+@rect,^filter(Alacritty Firefox Añadir Thunar ),7,200,150,30,2,left,top,#000000 0,#000000 0,
+@text,,20,200,150,30,2,left,top,#e6e6e6 100,#000000 0,Favoritos
+
+
+@rect,^filter(#Graphics #Scanning #Photography ),4,240,150,30,2,left,top,#000000 0,#000000 0,
+@icon,,10,240,32,32,2,left,top,#000000 50,#000000 50,/usr/share/icons/Paper/512x512/categories/applications-graphics.png
+@text,,20,240,150,30,2,left,top,#e6e6e6 100,#000000 0,Gráficos
+
+
+@rect,^filter(#Internet #Network #Email #FileTransfer #WebBrowser ),4,280,150,30,2,left,top,#000000 0,#000000 0,
+@text,,20,280,150,30,2,left,top,#e6e6e6 100,#000000 0,Internet
+
+
+@rect,^filter(#Multimedia #Player #Audio #Video #Recorder ),4,320,142,30,2,left,top,#000000 0,#000000 0,
+@text,,20,320,142,30,2,left,top,#e6e6e6 100,#000000 0,Multimedia
+
+
+@rect,^filter(#Office #Calendar #Contact #Dictionary #Chart #Finance #Presentation #Spreadsheet #WordProcessor #Publishing #Viewer ),4,360,142,30,2,left,top,#000000 0,#000000 0,
+@text,,20,360,142,30,2,left,top,#e6e6e6 100,#000000 0,Office
+
+
+@rect,^filter(#Games  #Game),4,400,142,30,2,left,top,#000000 0,#000000 0,
+@text,,20,400,142,30,2,left,top,#e6e6e6 100,#000000 0,Games
+
+
+@rect,^filter(#System #Emulator #FileManager #TerminalEmulator #Filesystem #Monitor ),4,440,142,30,2,left,top,#000000 0,#000000 0,
+@text,,20,440,142,30,2,left,top,#e6e6e6 100,#000000 0,Sistema
+
+
+@rect,^filter(#Settings #Security #Preferences ),4,480,142,30,2,left,top,#000000 0,#000000 0,
+@text,,20,480,142,30,2,left,top,#e6e6e6 100,#000000 0,Configuraciones
+
+
+
+
+
+
+
+
+
+
