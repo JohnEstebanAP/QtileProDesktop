@@ -247,10 +247,19 @@ groups = []
 # FOR QWERTY KEYBOARDS
 group_names = ["1", "2", "3", "4" , "5", "6", "7", "8", "9",]
 
+group_matches = [Match(wm_class=["alacritty"]), Match(wm_class=["code"]), Match(wm_class=["firedragon"]), Match(wm_class=["google-chrome-stable"]), Match(wm_class=["pcmanfm"]), Match(wm_class=["vlc"]), Match(wm_class=["xterm"]), Match(wm_class=[""]), Match(wm_class=[""]),]
+
+group_labels = ["", "", "", "", "", "", "", "", "",]
+
+group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "bsp", "treetab",  "floating", "bsp",]
+
 for i in range(len(group_names)):
     groups.append(
         Group(
             name=group_names[i],
+            matches=group_matches[i],
+            layout=group_layouts[i].lower(),
+            label=group_labels[i],
         ))
 
 for i in groups:
@@ -341,9 +350,194 @@ def base(fg='text', bg='dark'):
 
 # WIDGETS FOR THE BAR
 
+def init_widgets_defaults():
+    return dict(font="Noto Sans",
+                fontsize =16,
+                padding = 10,
+                background=colors[24])
 
-screens = [] 
+widget_defaults = init_widgets_defaults()
 
+def init_widgets_list():
+    prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+    widgets_list = [
+
+                 widget.Sep(
+                        linewidth = 1,
+                        padding = 4,
+                        foreground = colors[24],
+                        background = colors[24]
+                        ),           #
+               widget.Image(
+                       filename = "~/.config/qtile/icons/garuda-purple.png",
+                       iconsize = 20,
+                       background = colors[24],
+                       mouse_callbacks = {'Button1': lambda : qtile.cmd_spawn('jgmenu_run')}
+                       ),
+                 widget.Sep(
+                        linewidth = 1,
+                        padding = 4,
+                        foreground = colors[24],
+                        background = colors[24]
+                        ),     
+               widget.GroupBox(
+
+            **base(bg=colors[24]),
+            font='UbuntuMono Nerd Font',
+                    fontsize = 17,
+                    margin_y = 3,
+                    margin_x = 2,
+                    padding_y = 5,
+                    padding_x = 4,
+                    borderwidth = 3,
+
+            active=colors[5],
+            inactive=colors[25],
+            rounded= True,
+            highlight_method='block',
+            urgent_alert_method='block',
+            urgent_border=colors[24],
+            this_current_screen_border=colors[10],
+            this_screen_border=colors[24],
+            other_current_screen_border=colors[24],
+            other_screen_border=colors[24],
+            disable_drag=True
+                        ),
+                widget.TaskList(
+                    highlight_method = 'border', # or block
+                    icon_size=19,
+                    max_title_width=150,
+                    rounded=True,
+                    padding_x=4,
+                    padding_y=4,
+                    margin_y=2,
+                    margin_x=5,
+                    fontsize=12,
+                    border=colors[7],
+                    foreground=colors[10],
+                    txt_floating='🗗',
+                    txt_minimized='>_',
+                    borderwidth = 1,
+                    background=colors[24],
+                    #unfocused_border = 'border'
+                ),
+
+               widget.CurrentLayoutIcon(
+                       custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+                       foreground = colors[5],
+                       background = colors[24],
+                       padding = 0,
+                       scale = 0.7
+                       ),
+
+               widget.CurrentLayout(
+                      font = "Noto Sans Bold",
+                      fontsize = 12,
+                      foreground = colors[5],
+                      background = colors[24]
+                        ),
+               widget.Pomodoro(
+                        font="Noto Sans",
+                        fontsize = 12,
+                        foreground = colors[5],
+                        background = colors[24],
+                        color_active = colors[23],
+                        color_break = colors[25],
+                        color_inactive = colors[20],
+                       ),
+               widget.WidgetBox(
+                       font="Noto Sans Bold", 
+                       fontsize=15,
+                       text_closed = '  <  ',
+                       text_open = '  >  ',
+                       foreground = colors[23],
+                       widgets=[
+                widget.Net(
+                         font="Noto Sans",
+                         fontsize=12,
+                        # Here enter your network name
+                         interface=["enp3s0"],
+                         format = '{down} ↓↑ {up}',
+                         foreground=colors[5],
+                         background=colors[24],
+                         padding = 0,
+                         ),
+                        widget.CPU(
+                        font="Noto Sans",
+                        #format = '{MemUsed}M/{MemTotal}M',
+                        update_interval = 4,
+                        fontsize = 12,
+                        foreground = colors[5],
+                        background = colors[24],
+                        mouse_callbacks = {'Button1': lambda : qtile.cmd_spawn(myTerm + ' -e htop')},
+                       ),
+                widget.ThermalSensor(
+                        font="Noto Sans",
+                        fontsize = 12,
+                        foreground = colors[5],
+                        foreground_alert = colors[22],
+                        background = colors[24],
+                        update_interval = 8,
+                        markup = True,
+                        threshold = 50,
+                        ),
+               widget.Memory(
+                        font="Noto Sans",
+                        format = '{MemUsed: .0f}M/{MemFree: .0f}M',
+                        update_interval = 4,
+                        fontsize = 12,
+                        measure_mem = 'M',
+                        foreground = colors[5],
+                        background = colors[24],
+                        mouse_callbacks = {'Button1': lambda : qtile.cmd_spawn(myTerm + ' -e htop')},
+                       ),
+               widget.Clock(
+                        foreground = colors[23],
+                        background = colors[24],
+                        fontsize = 12,
+                        format="%y-%h-%d"
+                        ),
+
+
+               
+                    ]
+               ),
+               widget.Clock(
+                       font = "Noto Sans Bold", 
+                       foreground = colors[24],
+                        background = colors[23],
+                        fontsize = 12,
+                        format="%H:%M"
+                        ),
+
+               widget.Systray(
+                       background=colors[24],
+                       icon_size=20,
+                       padding = 4
+                       ),
+              ]
+    return widgets_list
+
+widgets_list = init_widgets_list()
+
+
+def init_widgets_screen1():
+    widgets_screen1 = init_widgets_list()
+    return widgets_screen1
+
+def init_widgets_screen2():
+    widgets_screen2 = init_widgets_list()
+    return widgets_screen2
+
+widgets_screen1 = init_widgets_screen1()
+widgets_screen2 = init_widgets_screen2()
+
+
+def init_screens():
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=27, opacity=1, background= "000000")),
+            Screen(bottom=bar.Bar(widgets=init_widgets_screen2(), size=27, opacity=1, background= "000000"))]
+
+screens = init_screens()
 
 # MOUSE CONFIGURATION
 mouse = [
@@ -405,7 +599,7 @@ main = None
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
-    subprocess.call([home + '/.config/qtile/scripts/autostart2.sh'])
+    subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
 
 @hook.subscribe.startup
 def start_always():

@@ -17,8 +17,6 @@ numlockx on &
 blueman-applet &
 
 # Barra del menu aleatoria
-~/.config/qtile/scripts/launch.sh 
-
 
 #flameshot &
 #picom --config $HOME/.config/picom/picom.conf &
@@ -38,4 +36,4 @@ run volumeicon &
 #run insync start &
 #run spotify &
 #run atom &
-#run telegram-desktop &
+~/.config/qtile/scripts/launch.sh 

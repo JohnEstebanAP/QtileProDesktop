@@ -18,10 +18,13 @@ launch_bar() {
 	elif [[ "$style" == "pwidgets" ]]; then
 		$dir/$style/scripts/pywal.sh  /usr/share/wallpapers/garuda-wallpapers
 		bash "$dir"/pwidgets/launch.sh --main
-    elif [[ "$style" == "panels" ]]; then
+        elif [[ "$style" == "panels" ]]; then
 		polybar -q main -c "$dir/$style/config.ini" &
 		feh --randomize --bg-fill /usr/share/wallpapers/garuda-wallpapers/*
-	elif [[ "$style" == "blocks" ]]; then
+	elif [[ "$style" == "funcional" ]]; then
+		polybar -q main -c "$dir/$style/config.ini" &
+		feh --randomize --bg-fill /usr/share/wallpapers/garuda-wallpapers/*
+ 	elif [[ "$style" == "blocks" ]]; then
 		polybar -q main -c "$dir/$style/config.ini" &
 		feh --randomize --bg-fill /usr/share/wallpapers/garuda-wallpapers/*
 	elif [[ "$style" == "forest" ]]; then

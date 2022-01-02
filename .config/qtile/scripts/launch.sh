@@ -14,7 +14,7 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 # polybar -q example -c "$DIR"/config &
 
 
-style=`echo $(($RANDOM%14))` 
+style=`echo $(($RANDOM%15))` 
 Themas=`echo $style`
 if [[ "$style" == "0" ]]; then
 	~/.config/polybar/launch.sh --blocks &
@@ -42,6 +42,8 @@ elif [[ "$style" == "11" ]];then
 	~/.config/polybar/launch.sh --shapes &
 elif [[ "$style" == "12" ]];then
 	~/.config/polybar/launch.sh --hack &
+elif [[ "$style" == "13" ]];then
+	~/.config/polybar/launch.sh --funcional &
 elif [[ "$style" == "13" ]];then
 	~/.config/polybar/launch.sh --funcional &
 fi
