@@ -1,0 +1,13 @@
+[Unit]
+Description="x11vnc"
+Requires=display-manager.service
+After=display-manager.service
+
+[Service]
+ExecStart=/usr/bin/x11vnc -many -forever -geometry 1440x900 -xkb -noxrecord -noxfixes -noxdamage -auth /home/john/.Xauthority -passwd Milu1017 
+ExecStop=/usr/bin/killall x11vnc
+Restart=on-failure
+Restart-sec=2
+
+[Install]
+WantedBy=multi-user.target
