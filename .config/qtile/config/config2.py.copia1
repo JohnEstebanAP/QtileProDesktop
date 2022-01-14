@@ -534,10 +534,10 @@ widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
-    return [Screen(top=bar.Bar( [],size=1, opacity=0, background= "000000"))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=10, opacity=1, background= "000000"),bottom=bar.Gap(0),)]
 
 screens = init_screens()
- 
+
 # MOUSE CONFIGURATION
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
