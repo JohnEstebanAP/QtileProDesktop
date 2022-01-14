@@ -25,6 +25,9 @@ picom --config .config/picom/picom-blur.conf --experimental-backends &
 dunst &
 #feh --randomize --bg-fill /usr/share/wallpapers/garuda-wallpapers/*
 #starting user applications at boot time
+
+DISPLAY=:0 feh --randomize --bg-fill /usr/share/wallpapers/garuda-wallpapers/*
+
 run volumeicon &
 #run discord &
 #nitrogen --random --set-zoom-fill &

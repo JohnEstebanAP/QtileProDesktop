@@ -266,6 +266,8 @@ for i in groups:
     keys.extend([
 
 #CHANGE WORKSPACES
+   
+        Key([mod], 'c' , lazy.next_screen(), desc='Next monitor'), 
         Key([mod], i.name, lazy.group[i.name].toscreen()),
         Key([mod], "Tab", lazy.screen.next_group()),
         Key([mod, "shift" ], "Tab", lazy.screen.prev_group()),

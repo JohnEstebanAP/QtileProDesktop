@@ -25,7 +25,9 @@ blueman-applet &
 picom --config .config/picom/picom-blur.conf --experimental-backends &
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst &
+DISPLAY=:0 feh --randomize --bg-fill /usr/share/wallpapers/garuda-wallpapers/*
 feh --randomize --bg-fill /usr/share/wallpapers/garuda-wallpapers/*
+
 #starting user applications at boot time
 run volumeicon &
 #run discord &

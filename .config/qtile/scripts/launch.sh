@@ -44,6 +44,6 @@ elif [[ "$style" == "12" ]];then
 	~/.config/polybar/launch.sh --hack &
 elif [[ "$style" == "13" ]];then
 	~/.config/polybar/launch.sh --funcional &
-elif [[ "$style" == "13" ]];then
+elif [[ "$style" == "14" ]];then
 	~/.config/polybar/launch.sh --funcional &
 fi

@@ -266,6 +266,8 @@ for i in groups:
     keys.extend([
 
 #CHANGE WORKSPACES
+   
+        Key([mod], 'c' , lazy.next_screen(), desc='Next monitor'), 
         Key([mod], i.name, lazy.group[i.name].toscreen()),
         Key([mod], "Tab", lazy.screen.next_group()),
         Key([mod, "shift" ], "Tab", lazy.screen.prev_group()),
@@ -534,11 +536,10 @@ widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=27, opacity=1, background= "000000")),
-            Screen(bottom=bar.Bar(widgets=init_widgets_screen2(), size=27, opacity=1, background= "000000"))]
+    return [Screen(top=bar.Bar( [],size=1, opacity=0, background= "000000"))]
 
 screens = init_screens()
-
+ 
 # MOUSE CONFIGURATION
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
@@ -599,7 +600,7 @@ main = None
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
-    subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
+    subprocess.call([home + '/.config/qtile/scripts/autostart2.sh'])
 
 @hook.subscribe.startup
 def start_always():
