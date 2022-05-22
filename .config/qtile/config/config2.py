@@ -40,6 +40,7 @@ from libqtile.widget import Spacer
 mod = "mod4"
 mod1 = "alt"
 mod2 = "control"
+mod3 = "<Tab>"
 home = os.path.expanduser('~')
 
 
@@ -61,21 +62,24 @@ myTerm = "xterm" # My terminal of choice
 keys = [
 
 # Funciones del sistema operativo
+    # cambio teclado
+
+    Key([mod], "m", lazy.spawn('set-x11-keymap latam pc105 dvorak')),
     # Menu de apagado y Reinicio
     Key([mod], "0", lazy.spawn('nwgbar -o 0.4 -s 90')),
 
 
 # Funciones de Qtile
-    # Cerara todo el Qtile 
+    # Cerara todo el Qtile
     #Key([mod], "x", lazy.shutdown()),
     Key([mod, "shift"], "x", lazy.shutdown()),
 
     # Reicia Qtile, no cerrará las ventanas
     Key([mod, "shift"], "r", lazy.restart()),
-    
+
     #Vuelve a cargar la configuración
     Key([mod, "control"], "r", lazy.reload_config()),
-   
+
 
 
 # SUPER + FUNCTION KEYS
@@ -83,7 +87,7 @@ keys = [
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
 #    Key([mod], "t", lazy.spawn('xterm')),
-    Key([mod], "v", lazy.spawn('pavucontrol')),
+    # Key([mod], "v", lazy.spawn('pavucontrol')),
     Key([mod], "d", lazy.spawn('nwggrid -p -o 0.4')),
     Key([mod], "Escape", lazy.spawn('xkill')),
     Key([mod], "Return", lazy.spawn('alacritty')),
@@ -100,13 +104,14 @@ keys = [
 
     Key(["mod1", "control"], "o", lazy.spawn(home + '/.config/qtile/scripts/picom-toggle.sh')),
    # Key(["mod1", "control"], "t", lazy.spawn('xterm')),
-   # Key(["mod1", "control"], "u", lazy.spawn('pavucontrol')),
+    Key(["mod1", "control"], "u", lazy.spawn('pavucontrol')),
 
 # ALT + ... KEYS
 
     Key(["mod1"], "t", lazy.spawn('xterm')),
     Key(["mod1"], "p", lazy.spawn('pamac-manager')),
     Key(["mod1"], "f", lazy.spawn('firedragon')),
+    Key(["mod1"], "g", lazy.spawn('google-chrome-stable')),
     Key(["mod1"], "m", lazy.spawn('pcmanfm')),
     Key(["mod1"], "w", lazy.spawn('garuda-welcome')),
     Key(["mod1"], "v", lazy.spawn('vlc')),
@@ -247,11 +252,11 @@ groups = []
 # FOR QWERTY KEYBOARDS
 group_names = ["1", "2", "3", "4" , "5", "6", "7", "8", "9",]
 
-group_matches = [Match(wm_class=["alacritty"]), Match(wm_class=["code"]), Match(wm_class=["firedragon"]), Match(wm_class=["google-chrome-stable"]), Match(wm_class=["pcmanfm"]), Match(wm_class=["vlc"]), Match(wm_class=["xterm"]), Match(wm_class=[""]), Match(wm_class=[""]),]
+group_matches = [Match(wm_class=["alacritty"]), Match(wm_class=["code"]), Match(wm_class=["firedragon"]), Match(wm_class=["google-chrome-stable"]), Match(wm_class=["pcmanfm"]), Match(wm_class=["vlc"]), Match(wm_class=[""]), Match(wm_class=[""]), Match(wm_class=[""]),]
 
 group_labels = ["", "", "", "", "", "", "", "", "",]
 
-group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "bsp", "treetab",  "floating", "bsp",]
+group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "bsp", "bsp",  "floating", "bsp",]
 
 for i in range(len(group_names)):
     groups.append(
@@ -266,8 +271,8 @@ for i in groups:
     keys.extend([
 
 #CHANGE WORKSPACES
-   
-        Key([mod], 'c' , lazy.next_screen(), desc='Next monitor'), 
+
+        Key([mod], 'c' , lazy.next_screen(), desc='Next monitor'),
         Key([mod], i.name, lazy.group[i.name].toscreen()),
         Key([mod], "Tab", lazy.screen.next_group()),
         Key([mod, "shift" ], "Tab", lazy.screen.prev_group()),
@@ -330,15 +335,15 @@ def init_colors():
             ["#c40234", "#c40234"], # color 9
             ["#6790eb", "#6790eb"], # color 10  azul claro oscuro
             ["#ff00ff", "#ff00ff"], #11
-            ["#4c566a", "#4c566a"], #12 
+            ["#4c566a", "#4c566a"], #12
             ["#282c34", "#282c34"], #13
             ["#212121", "#212121"], #14
-            ["#98c379", "#98c379"], #15 
-            ["#b48ead", "#b48ead"], #16 
+            ["#98c379", "#98c379"], #15
+            ["#b48ead", "#b48ead"], #16
             ["#abb2bf", "#abb2bf"], #17
-            ["#81a1c1", "#81a1c1"], #18 
-            ["#56b6c2", "#56b6c2"], #19 
-            ["#c678dd", "#c678dd"], #20 
+            ["#81a1c1", "#81a1c1"], #18
+            ["#56b6c2", "#56b6c2"], #19
+            ["#c678dd", "#c678dd"], #20
             ["#e06c75", "#e06c75"], #21
             ["#ffc300", "#ffc300"], #22 verde pastel oscuro
             ["#cfffd0", "#bcffa2"], #23 verde pastel
@@ -364,25 +369,25 @@ def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
 
-                 widget.Sep(
+                widget.Sep(
                         linewidth = 1,
                         padding = 4,
                         foreground = colors[24],
                         background = colors[24]
                         ),           #
-               widget.Image(
+                widget.Image(
                        filename = "~/.config/qtile/icons/garuda-purple.png",
                        iconsize = 20,
                        background = colors[24],
                        mouse_callbacks = {'Button1': lambda : qtile.cmd_spawn('jgmenu_run')}
                        ),
-                 widget.Sep(
+                widget.Sep(
                         linewidth = 1,
                         padding = 4,
                         foreground = colors[24],
                         background = colors[24]
-                        ),     
-               widget.GroupBox(
+                        ),
+                widget.GroupBox(
 
             **base(bg=colors[24]),
             font='UbuntuMono Nerd Font',
@@ -448,7 +453,7 @@ def init_widgets_list():
                         color_inactive = colors[20],
                        ),
                widget.WidgetBox(
-                       font="Noto Sans Bold", 
+                       font="Noto Sans Bold",
                        fontsize=15,
                        text_closed = '  <  ',
                        text_open = '  >  ',
@@ -501,11 +506,11 @@ def init_widgets_list():
                         ),
 
 
-               
+
                     ]
                ),
                widget.Clock(
-                       font = "Noto Sans Bold", 
+                       font = "Noto Sans Bold",
                        foreground = colors[24],
                         background = colors[23],
                         fontsize = 12,
@@ -539,7 +544,7 @@ def init_screens():
     return [Screen(top=bar.Bar( [],size=1, opacity=0, background= "000000"))]
 
 screens = init_screens()
- 
+
 # MOUSE CONFIGURATION
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
